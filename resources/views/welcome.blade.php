@@ -6,12 +6,10 @@
     <title>Laravel Vue Auth</title>
 </head>
 <body>
-    <div id="app">
-        <register-form></register-form>
-        <login-form></login-form>
-
+    <div>
+        <h1>Welcome</h1>
+        <a class="link "  href="/login">Login</a>
+        <a class="link " href="/register">Register</a>
     </div>
-
-    @vite(['resources/js/app.js'])
 </body>
 </html>

@@ -2,33 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 
-
-
-
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/', function () {
-    return view('auth.dashboard');
-});
-
+//Guest Routes
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [FormController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [FormController::class, 'register']);
-
 Route::get('/login', [FormController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [FormController::class, 'login']);
 
-Route::post('/logout', [FormController::class, 'logout'])->name('logout')->middleware('auth');
+
+//Protected Routes
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/logout', [FormController::class, 'logout'])->name('logout');
+});
+
+
+
 
 
 
