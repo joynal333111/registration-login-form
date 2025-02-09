@@ -19,6 +19,11 @@ class FormMiddleware
         if (!Auth::check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
+        if (!Auth::user()->is_verified) {
+            return response()->json([
+                'message' => 'Your email is not verified. Please verify it before accessing this resource.'
+            ], 403);
+        }
         return $next($request);
     }
 }

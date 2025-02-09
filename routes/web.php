@@ -14,6 +14,12 @@ Route::get('/login', [FormController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [FormController::class, 'login']);
 
 
+// Email Verification Routes
+Route::get('/verify-email', [FormController::class, 'showVerifyEmailForm'])->name('verify.email');
+Route::post('/verify-email', [FormController::class, 'verifyEmail']);
+Route::get('/verify-email/{token}/{email}', [FormController::class, 'verifyEmailWithLink'])->name('verify.email.link');
+
+
 //Protected Routes
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
