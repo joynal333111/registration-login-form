@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\XmlFileMaker;
 use App\Http\Controllers\FormController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 
 
 //Guest Routes
@@ -12,7 +13,7 @@ Route::get('/register', [FormController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [FormController::class, 'register']);
 Route::get('/login', [FormController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [FormController::class, 'login']);
-
+Route::get('/xml-maker', [XmlFileMaker::class, 'xmlMaker'])->name('xml');
 
 // Email Verification Routes
 Route::get('/verify-email', [FormController::class, 'showVerifyEmailForm'])->name('verify.email');
