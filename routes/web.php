@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Middleware\FormMiddleware;
+use App\Http\Controllers\XmlFileMaker;
 use App\Http\Controllers\FormController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -15,6 +16,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [FormController::class, 'login']);
     Route::get('/verify-email', [FormController::class, 'showVerifyEmailForm'])->name('verify.email');
     Route::post('/verify-email', [FormController::class, 'verifyEmail']);
+    Route::get('/xml-maker', [XmlFileMaker::class, 'xmlMaker'])->name('xml');
 });
 
 
